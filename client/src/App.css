@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100vh;
+    background-color: #c0c0c0;
+}
+
+.formInputs form {
+    display: grid;
+    grid-column: auto;
+    justify-self: center;
+    margin: auto;
+    width: 300px;
+    text-align: center;
+    color: #fff;
+    gap: 1rem;
+    padding: 2rem;
+    border-radius: 5px;
+    border: 1px solid #3d0000;
+    background-color: #4a4545;
+
+    box-shadow: 5px 5px 5px 2px #00000050;
+}
+
+.formInputs button {
+    border-radius: 5px;
+    border: 1px solid #3d0000;
+    padding: 5px;
+    width: 180px;
+    margin: auto;
+}
