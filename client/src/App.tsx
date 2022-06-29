@@ -1,12 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading *//* eslint-disable prettier/prettier */
 import axios from "axios";
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import "./App.css"
+import './App.css'
 
 interface IFormInputProps {
-    cep: string;
-    rua: string;
+    zipCode: string;
+    address: string;
     numero: string;
     bairro: string;
     cidade: string;
@@ -16,20 +15,24 @@ interface IFormInputProps {
 function App() {
     const { register, handleSubmit, setValue, setFocus, formState: { errors } } = useForm<IFormInputProps>();
 
-    const onSubmit = (e: React.FormEvent<HTMLInputElement>) => {
-        console.log(e)
+    const postZipCodeRegister = async (e: Event) => {
+        const data = e
+        // console.log('data', data)
+        await axios.post('http://localhost:3333/api/zipcode', {
+            data
+        })
+            .then(res => console.log('data', res))
+            .catch(error => console.log(error));
+        // console.log('data', res)
+        // console.log(e)
     }
 
-
-    useEffect(() => {
-
-    }, [])
-
-    const checkCEP = (e: { target: { value: string; }; }) => {
+    const checkCEP = (e: any) => {
         const cep = e.target.value.replace(/\D/g, '');
         fetch(`https://viacep.com.br/ws/${cep}/json/`)
             .then(res => res.json()).then(data => {
-                setValue('rua', data.logradouro);
+                setValue('zipCode', data.cep);
+                setValue('address', data.logradouro);
                 setValue('bairro', data.bairro);
                 setValue('cidade', data.localidade);
                 setValue('estado', data.uf);
@@ -37,23 +40,34 @@ function App() {
                 console.log(data)
             })
     }
+    // const checkCEP = (e: { target: { value: string; }; }) => {
+    //     useEffect(() => {
+    //         const cep = e.target.value.replace(/\D/g, '');
+
+    //         axios.get(`https://viacep.com.br/ws/${cep}/json/`)
+    //             .then(res => {
+    //                 console.log(checkCEP)
+    //             })
+
+    //     }
+    // }, [])
 
     return (
 
         <div className="formInputs">
-            <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
+            <form action="/zipcode" method="POST" onSubmit={handleSubmit(postZipCodeRegister)}>
 
-                <label htmlFor="cep">
+                <label htmlFor="zipCode">
                     <div>CEP:</div>
-                    <input type="text" id="cep" {...register("cep")} onBlur={checkCEP} />
+                    <input type="text" id="zipCode" {...register("zipCode")} onBlur={checkCEP} />
                 </label>
-                {errors.cep && <p>{errors.cep.message}</p>}
+                {errors.zipCode && <p>{errors.zipCode.message}</p>}
 
-                <label htmlFor="rua">
+                <label htmlFor="address">
                     <div>Rua:</div>
-                    <input type="text" id="rua" {...register("rua")} />
+                    <input type="text" id="address" {...register("address")} />
                 </label>
-                {errors.rua && <p>{errors.rua.message}</p>}
+                {errors.address && <p>{errors.address.message}</p>}
 
                 <label htmlFor="numero">
                     <div>Número:</div>
@@ -81,6 +95,12 @@ function App() {
 
                 <button type="submit">Enviar</button>
             </form>
+            <div>
+                {/* <p>{data.logradouro}</p>
+                {data.bairro}
+                {data.localidade}
+                {data.uf} */}
+            </div>
         </div>
     );
 }
