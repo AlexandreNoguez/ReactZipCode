@@ -15,7 +15,7 @@ interface IFormInputProps {
 function App() {
     const { register, handleSubmit, setValue, setFocus, formState: { errors } } = useForm<IFormInputProps>();
 
-    const postZipCodeRegister = async (e: any) => {
+    const postZipCodeRegister = async (e: React.FormEvent) => {
         const data = e
         // console.log('data', data)
         await axios.post('http://localhost:3333/api/zipcode', {
@@ -27,7 +27,7 @@ function App() {
         // console.log(e)
     }
 
-    const checkCEP = (e: any) => {
+    const checkCEP = (e: React.ChangeEvent<HTMLInputElement>) => {
         const cep = e.target.value.replace(/\D/g, '');
         fetch(`https://viacep.com.br/ws/${cep}/json/`)
             .then(res => res.json()).then(data => {
@@ -55,7 +55,7 @@ function App() {
     return (
 
         <div className="formInputs">
-            <form action="/zipcode" method="POST" onSubmit={handleSubmit(postZipCodeRegister)}>
+            <form action="/zipcode" method="POST" onSubmit={handleSubmit(() => postZipCodeRegister)}>
 
                 <label htmlFor="zipCode">
                     <div>CEP:</div>
