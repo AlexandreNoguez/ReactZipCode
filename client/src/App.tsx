@@ -38,6 +38,7 @@ function App() {
                 setValue('estado', data.uf);
                 setFocus('numero')
                 console.log(data)
+                return data
             })
     }
     // const checkCEP = (e: { target: { value: string; }; }) => {
@@ -94,13 +95,14 @@ function App() {
                 {errors.estado && <p>{errors.estado.message}</p>}
 
                 <button type="submit">Enviar</button>
+                <p>Digite o CEP desejado e aperte selecione outro campo!</p>
+                <p>Após digitar o CEP se apertar TAB o cursor move para o número automaticamente.</p>
+                {/* <p>{data.logradouro}</p> */}
+                {/* {data.bairro} */}
+                {/* {data.localidade} */}
+                {/* {data.uf} */}
             </form>
-            <div>
-                {/* <p>{data.logradouro}</p>
-                {data.bairro}
-                {data.localidade}
-                {data.uf} */}
-            </div>
+            <div />
         </div>
     );
 }
