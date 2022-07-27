@@ -95,7 +95,7 @@ function App() {
                 {errors.estado && <p>{errors.estado.message}</p>}
 
                 <button type="submit">Enviar</button>
-                <p>Digite o CEP desejado e aperte selecione outro campo!</p>
+                <p>Digite o CEP desejado e selecione outro campo!</p>
                 <p>Após digitar o CEP se apertar TAB o cursor move para o número automaticamente.</p>
                 {/* <p>{data.logradouro}</p> */}
                 {/* {data.bairro} */}
