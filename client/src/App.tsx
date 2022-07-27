@@ -15,7 +15,7 @@ interface IFormInputProps {
 function App() {
     const { register, handleSubmit, setValue, setFocus, formState: { errors } } = useForm<IFormInputProps>();
 
-    const postZipCodeRegister = async (e: React.FormEvent) => {
+    const postZipCodeRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         const data = e
         // console.log('data', data)
         await axios.post('http://localhost:3333/api/zipcode', {

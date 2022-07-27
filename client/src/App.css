@@ -3,7 +3,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     height: 100vh;
-    background-color: #c0c0c0;
+    background-color: #334155;
 }
 
 .formInputs form {
@@ -18,7 +18,7 @@ body {
     padding: 2rem;
     border-radius: 5px;
     border: 1px solid #3d0000;
-    background-color: #4a4545;
+    background-color: #1e293b;
 
     box-shadow: 5px 5px 5px 2px #00000050;
 }

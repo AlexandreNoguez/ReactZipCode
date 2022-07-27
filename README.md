@@ -18,7 +18,7 @@ Tecnologias utilizadas no desenvolvimento:
 
 ## Para executar
 
-### clonar o diretorio: ReactZipCode
+### clonar o repositório: ReactZipCode
 * Configurar seu banco de dados e subir via MongoDB (Eu utilizei o Atlas)
 * npm install (Para instalar as dependências do client)
 * yarn (Para instalar as dependências do server)
